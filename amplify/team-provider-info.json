@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-potlamplify-dev-121616-authRole",
+      "UnauthRoleArn": "arn:aws:iam::212973259020:role/amplify-potlamplify-dev-121616-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::212973259020:role/amplify-potlamplify-dev-121616-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-potlamplify-dev-121616-deployment",
+      "UnauthRoleName": "amplify-potlamplify-dev-121616-unauthRole",
+      "StackName": "amplify-potlamplify-dev-121616",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:212973259020:stack/amplify-potlamplify-dev-121616/80d3ec20-99b3-11eb-86eb-06965e20f824",
+      "AmplifyAppId": "df9fpitmunbr5"
+    },
+    "categories": {
+      "auth": {
+        "potlamplify30159bd0": {}
+      }
+    }
+  }
+}
