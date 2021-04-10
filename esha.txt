@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 allen huh arhhhhhhhh
-=======
 Noob Esha
 Hello from branch Dannyd
->>>>>>> e07d8a5aa7436dd5e37486fd28e0d929aa580fd6
+Hello from branch Allen
