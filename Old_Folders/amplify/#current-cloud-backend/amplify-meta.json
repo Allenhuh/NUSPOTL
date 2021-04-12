@@ -1,0 +1,64 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-potlamplify-dev-121616-authRole",
+      "UnauthRoleArn": "arn:aws:iam::212973259020:role/amplify-potlamplify-dev-121616-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::212973259020:role/amplify-potlamplify-dev-121616-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-potlamplify-dev-121616-deployment",
+      "UnauthRoleName": "amplify-potlamplify-dev-121616-unauthRole",
+      "StackName": "amplify-potlamplify-dev-121616",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:212973259020:stack/amplify-potlamplify-dev-121616/80d3ec20-99b3-11eb-86eb-06965e20f824",
+      "AmplifyAppId": "df9fpitmunbr5"
+    }
+  },
+  "api": {
+    "myapi": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 40,
+              "description": "demo"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "6c3hqnchbvf4xbfua7fmxmxa3a",
+        "GraphQLAPIEndpointOutput": "https://rhgrmyni7bazlj4xxhzmj4h4xi.appsync-api.ap-southeast-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-inylpp6tkrdbzisnf3ar25vtwu"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-potlamplify-dev-121616-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apimyapi"
+      },
+      "lastPushTimeStamp": "2021-04-10T05:05:23.931Z",
+      "lastPushDirHash": "meFh/XIYz9cpmejRtPXi+BonXxI="
+    }
+  },
+  "auth": {
+    "potlamplify30159bd0": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-potlamplify-dev-121616-deployment/amplify-cfn-templates/auth/potlamplify30159bd0-cloudformation-template.yml",
+        "logicalId": "authpotlamplify30159bd0"
+      },
+      "lastPushTimeStamp": "2021-04-10T05:05:23.969Z",
+      "output": {
+        "UserPoolId": "ap-southeast-1_NExEpn6Wb",
+        "AppClientIDWeb": "79c0bjvnd1vsts84e6jsiuqog1",
+        "AppClientID": "2eku7f7llueofirlfsce9bk0fi",
+        "IdentityPoolId": "ap-southeast-1:0c613172-be68-4155-9678-554817a2efbd",
+        "IdentityPoolName": "potlamplify30159bd0_identitypool_30159bd0__dev",
+        "UserPoolName": "potlamplify30159bd0_userpool_30159bd0"
+      },
+      "lastPushDirHash": "nxXq011U41d/QUf0vYKzA+owmqs="
+    }
+  }
+}
