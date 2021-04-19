@@ -1,24 +1,26 @@
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 import AddPetScreen from './src/screens/add-pet-screen';
 import HomeScreen from './src/screens/home-screen';
-import {Button} from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {withAuthenticator} from 'aws-amplify-react-native';
-import {Auth} from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react-native';
+import { Auth } from 'aws-amplify';
+import TabNavigation from './src/navigation/tab';
 
 const App: () => React$Node = () => {
   const Stack = createStackNavigator();
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        {/* <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={({navigation}) => ({
+            options={({ navigation }) => ({
               headerTitleStyle: { alignSelf: 'center' },
               title: 'Welcome to POTL',
               headerStyle: {
@@ -28,7 +30,7 @@ const App: () => React$Node = () => {
                 <View style={styles.logOutBtn}>
                   <Button
                     icon={<Icon name="sign-out" size={25} color="#000000" />}
-                    onPress={ () => {
+                    onPress={() => {
                       Auth.signOut();
                     }}
                     type="clear"
@@ -56,7 +58,8 @@ const App: () => React$Node = () => {
               },
             }}
           />
-        </Stack.Navigator>
+        </Stack.Navigator> */}
+        <TabNavigation></TabNavigation>
       </NavigationContainer>
     </>
   );
