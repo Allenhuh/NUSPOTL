@@ -6,7 +6,7 @@ const AddPetScreen = (props) => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <Text>Post Missing Pet</Text>
+      <Text style={{textAlignVertical: "center",textAlign: "center",}}>Post Missing Pet</Text>
       </SafeAreaView>
     </>
   );

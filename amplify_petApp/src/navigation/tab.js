@@ -1,9 +1,16 @@
 import React from 'react';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddPetScreen from '../screens/add-pet-screen';
 import HomeScreen from '../screens/home-screen';
+import FaqScreen from '../screens/faq-screen';
+import ProfileScreen from '../screens/profile-screen';
+import SettingScreen from '../screens/setting-screen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Auth } from 'aws-amplify';
 
 const Tab = createBottomTabNavigator();
 const LostPetsStack = createStackNavigator();
@@ -24,7 +31,32 @@ const TabNavigation = (props) => {
 				}}>
 				{() => (
 					<LostPetsStack.Navigator>
-						<LostPetsStack.Screen name="Settings" component={HomeScreen} />
+						<LostPetsStack.Screen name="Settings" component={HomeScreen} 
+						options={({ navigation }) => ({
+							headerTitleStyle: { alignSelf: 'center' },
+							title: 'Welcome to POTL',
+							headerStyle: {
+							  backgroundColor: '#E8D7D2',
+							},
+							headerLeft: () => (
+								<View style={styles.logOutBtn}>
+								  <Button
+									icon={<Icon name="sign-out" size={25} color="#000000" />}
+									onPress={() => {
+									  Auth.signOut();
+									}}
+									type="clear"
+								  />
+								</View>
+							  ),
+							headerRight: () => (
+								<TouchableOpacity
+								  style={styles.addButton}
+								  onPress={() => navigation.navigate('My Pets')}>
+								  <Icon name={'plus'} size={20} color="#000000" />
+								</TouchableOpacity>
+							  ),
+						  })} />
 					</LostPetsStack.Navigator>
 				)}
 			</Tab.Screen>
@@ -50,7 +82,7 @@ const TabNavigation = (props) => {
 				}}>
 				{() => (
 					<SettingsStack.Navigator>
-						<SettingsStack.Screen name="Settings" component={AddPetScreen} />
+						<SettingsStack.Screen name="Settings" component={SettingScreen} />
 					</SettingsStack.Navigator>
 				)}
 			</Tab.Screen>
@@ -63,7 +95,7 @@ const TabNavigation = (props) => {
 				}}>
 				{() => (
 					<FAQStack.Navigator>
-						<FAQStack.Screen name="FAQ" component={AddPetScreen} />
+						<FAQStack.Screen name="FAQ" component={FaqScreen} />
 					</FAQStack.Navigator>
 				)}
 			</Tab.Screen>
@@ -76,7 +108,7 @@ const TabNavigation = (props) => {
 				}}>
 				{() => (
 					<ProfileStack.Navigator>
-						<ProfileStack.Screen name="Profile" component={AddPetScreen} />
+						<ProfileStack.Screen name="Profile" component={ProfileScreen} />
 					</ProfileStack.Navigator>
 				)}
 			</Tab.Screen>
@@ -85,4 +117,13 @@ const TabNavigation = (props) => {
 
 };
 
+const styles = StyleSheet.create({
+	addButton: {
+	  marginRight: 20,
+	},
+	logOutBtn: {
+	  marginLeft: 10,
+	},
+  });
+  
 export default TabNavigation;
