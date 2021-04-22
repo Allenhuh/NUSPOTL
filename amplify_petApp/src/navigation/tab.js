@@ -33,15 +33,15 @@ const TabNavigation = (props) => {
 					<LostPetsStack.Navigator>
 						<LostPetsStack.Screen name="Settings" component={HomeScreen} 
 						options={({ navigation }) => ({
-							headerTitleStyle: { alignSelf: 'center' },
-							title: 'Welcome to POTL',
+							headerTitleStyle: { color:'#3bb0d6', alignSelf: 'center'},
+							title: 'P  O  T  L',
 							headerStyle: {
-							  backgroundColor: '#E8D7D2',
+							  backgroundColor: '#F9F9F9',
 							},
 							headerLeft: () => (
 								<View style={styles.logOutBtn}>
 								  <Button
-									icon={<Icon name="sign-out" size={25} color="#000000" />}
+									icon={<Icon name="sign-out" size={25} color="#656d77" />}
 									onPress={() => {
 									  Auth.signOut();
 									}}
@@ -53,7 +53,7 @@ const TabNavigation = (props) => {
 								<TouchableOpacity
 								  style={styles.addButton}
 								  onPress={() => navigation.navigate('My Pets')}>
-								  <Icon name={'plus'} size={20} color="#000000" />
+								  <Icon name={'plus'} size={20} color="#656d77" />
 								</TouchableOpacity>
 							  ),
 						  })} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, Text} from 'react-native';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import styles from '../styling/FaqScreen';
 
 const FaqScreen = (props) => {
   return (
@@ -15,12 +16,5 @@ const FaqScreen = (props) => {
   );
 
 };
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#F9F9F9',
-    }
-  });
 
 export default FaqScreen;

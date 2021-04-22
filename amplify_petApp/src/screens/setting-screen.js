@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, Text} from 'react-native';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import styles from '../styling/SettingScreen';
 
 const SettingScreen = (props) => {
   return (
@@ -15,12 +16,5 @@ const SettingScreen = (props) => {
   );
 
 };
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#F9F9F9',
-    }
-  });
 
 export default SettingScreen;
