@@ -1,17 +1,15 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, Text} from 'react-native';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
-import styles from '../styling/HomeScreen';
+import styles from '../styling/FaqScreen';
 
-const HomeScreen = (props) => {
+const FaqScreen = (props) => {
   return (
     <>
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>HomePage</Text>
-        </View>
+      <Text style={{textAlignVertical: "center",textAlign: "center",}}>FAQ</Text>
       </SafeAreaView>
       </View>
     </>
@@ -19,4 +17,4 @@ const HomeScreen = (props) => {
 
 };
 
-export default HomeScreen;
+export default FaqScreen;
