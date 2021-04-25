@@ -7,49 +7,66 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { withAuthenticator } from 'aws-amplify-react-native';
+import TabNavigation from './src/navigation/tab';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <>
+      <NavigationContainer>
+        {/* <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={({ navigation }) => ({
+              headerTitleStyle: { alignSelf: 'center' },
+              title: 'Welcome to POTL',
+              headerStyle: {
+                backgroundColor: '#E8D7D2',
+              },
+              headerLeft: () => (
+                <View style={styles.logOutBtn}>
+                  <Button
+                    icon={<Icon name="sign-out" size={25} color="#000000" />}
+                    onPress={() => {
+                      Auth.signOut();
+                    }}
+                    type="clear"
+                  />
+                </View>
+              ),
+              headerRight: () => (
+                <TouchableOpacity
+                  style={styles.addButton}
+                  onPress={() => navigation.navigate('AddPet')}>
+                  <Icon name={'plus'} size={20} color="#000000" />
+                </TouchableOpacity>
+              ),
+            })}
+          />
+          <Stack.Screen
+            name="AddPet"
+            buttonStyle={styles.addButton}
+            component={AddPetScreen}
+            options={{
+              headerTitleStyle: { alignSelf: 'center' },
+              title: 'Add Pet',
+              headerStyle: {
+                backgroundColor: '#A0B3C1',
+              },
+            }}
+          />
+        </Stack.Navigator> */}
+        <TabNavigation></TabNavigation>
+      </NavigationContainer>
+    </>
   );
 };
 
