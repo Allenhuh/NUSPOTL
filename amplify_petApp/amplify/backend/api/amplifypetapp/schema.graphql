@@ -1,0 +1,10 @@
+type Pet @model {
+  id: ID!
+  petName: String!
+  petSpecies: String!
+  petBreed: String!
+  petGender: String!
+  petDesc: String
+  lastSeen: String!
+  image: String
+}
