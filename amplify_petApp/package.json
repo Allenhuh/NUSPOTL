@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "npx react-native run-android --port=1234",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "^6.0.0",
+    "@react-navigation/bottom-tabs": "^5.11.10",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
     "amazon-cognito-identity-js": "^4.6.0",
@@ -21,10 +22,14 @@
     "react-native": "0.64.0",
     "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-image-crop-picker": "^0.36.0",
+    "react-native-paper": "^4.7.2",
     "react-native-reanimated": "^2.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.1.1",
-    "react-native-vector-icons": "^8.1.0"
+    "react-native-vector-icons": "^8.1.0",
+    "react-navigation-material-bottom-tabs": "^2.3.4",
+    "react-navigation-stack": "^2.10.4"
   },
   "devDependencies": {
     "@babel/core": "7.13.15",
