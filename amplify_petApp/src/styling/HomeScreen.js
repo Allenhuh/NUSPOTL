@@ -9,6 +9,11 @@ const styles = StyleSheet.create({
         marginTop: 20,
         color:'#121431'
     },
+    subtext: {
+        marginTop: 15,
+        fontSize: 20,
+        color:'#121431'
+      },
     titleContainer:{
         justifyContent:'center',
         alignItems:'center',
@@ -16,6 +21,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ccd1d8',
+      },
+      inputContainer: {
+        alignItems:'center',
+        color:'#CBE7ED',
+        justifyContent: 'center',
+        paddingTop: '5%',
       }
 })
 
