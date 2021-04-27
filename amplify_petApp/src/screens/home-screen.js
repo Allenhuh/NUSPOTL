@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect,Component} from 'react';
 import {SafeAreaView, StatusBar, Text} from 'react-native';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import styles from '../styling/HomeScreen';
@@ -24,7 +24,7 @@ render(){
         </View>
         <View style={styles.inputContainer}> 
         {this.state.pets.map((pet, i) => 
-            <Text style={styles.subtext} key= {i}>{pet.petName} {pet.petSpecies} {pet.petGender}
+            <Text style={styles.subtext} key= {i}> {pet.petName} {pet.petSpecies} {pet.petGender}
             </Text>
             )}
         </View>

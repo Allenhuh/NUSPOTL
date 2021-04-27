@@ -14,8 +14,10 @@ export default function AddPetScreen({ updateAuthState }) {
   const [petGender, setPetGender] = useState('');
   const [lastSeen, setLastSeen] = useState('');
   const [pets, setPets] = useState([]);
-  const [image, setImage] = useState(null);
-  
+  const [image, setImage] = useState();
+  const [uri, seturi] = useState('');
+  const [imageName, setimageName] = useState('');
+
   const choosePhotoFromLibrary = () => {
     ImagePicker.openPicker({
       width: 300,
@@ -23,8 +25,11 @@ export default function AddPetScreen({ updateAuthState }) {
       cropping: true,
       compressImageQuality: 0.7
     }).then(image => {
-      console.log(image);
-      setImage(image.uri);
+      seturi(image.path) ;
+      setImage(image.path);
+      setimageName(image.modificationDate);
+      console.log('Image URI',uri);
+      console.log('Received Image',image);
     });
   }
 
@@ -32,14 +37,18 @@ export default function AddPetScreen({ updateAuthState }) {
     const input = { petName, petSpecies, petBreed, petGender, lastSeen, image};
     const result = await API.graphql(graphqlOperation(createPet, { input }));
 
-    if (image) {
-      const response = await fetch(image.uri);
-
+    try {
+      const response = await fetch(uri);
       const blob = await response.blob();
-      console.log('FileName: \n');
-      await Storage.put(image.fileName, blob, {
-        contentType: 'image/jpeg',
+      await Storage.put(imageName, blob, {
+        contentType: 'image/jpeg', 
       });
+    } catch (err) {
+      console.log('----Image name:', image.fileName);
+      console.log('----Image URI:', image.uri);
+      console.log('----Image Path:', image.path);
+      console.log('----Image:', image);
+      console.log('Error uploading file:', err);
     }
     
     const newPet = result.data.createPet;
