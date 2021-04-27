@@ -69,7 +69,8 @@ const TabNavigation = (props) => {
 				}}>
 				{() => (
 					<MyPetStack.Navigator>
-						<MyPetStack.Screen name="My Pet" component={AddPetScreen} />
+						<MyPetStack.Screen name="My Pet" component={AddPetScreen} 
+						options={{title: 'MY PET', headerTitleStyle: {color:'#3bb0d6', alignSelf: 'center'}}}/>
 					</MyPetStack.Navigator>
 				)}
 			</Tab.Screen>
