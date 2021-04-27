@@ -10,7 +10,7 @@ const HomeScreen = (props) => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>HomePage</Text>
+          <Text style={styles.title}>Pets on the Loose</Text>
         </View>
       </SafeAreaView>
       </View>

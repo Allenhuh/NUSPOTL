@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         fontWeight:'bold',
         marginTop: 20,
-        color:'#121431'
+        color:'#EFEADD',
     },
     titleContainer:{
         justifyContent:'center',
@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#F9F9F9',
+        backgroundColor: '#EFEADD',
+        margin: 20,
       }
 })
 

@@ -38,7 +38,7 @@ const TabNavigation = (props) => {
 							headerStyle: {
 							  backgroundColor: '#F9F9F9',
 							},
-							headerLeft: () => (
+							headerRight: () => (
 								<View style={styles.logOutBtn}>
 								  <Button
 									icon={<Icon name="sign-out" size={25} color="#656d77" />}
@@ -49,7 +49,7 @@ const TabNavigation = (props) => {
 								  />
 								</View>
 							  ),
-							headerRight: () => (
+							headerLeft: () => (
 								<TouchableOpacity
 								  style={styles.addButton}
 								  onPress={() => navigation.navigate('My Pets')}>
