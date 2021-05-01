@@ -5,7 +5,7 @@ import styles from '../styling/FaqScreen';
 
 const FaqScreen = (props) => {
   return (
-    <>   
+    <>
 
     <View style={styles.container}>
     <Text style={{textAlignVertical:"top", textAlign:"auto",}}>1. Question: What to do when your pet is missing?</Text>
