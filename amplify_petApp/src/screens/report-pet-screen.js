@@ -7,7 +7,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { Storage } from 'aws-amplify';
 import { StyleSheet } from 'react-native';
 
-export default function AddPetScreen({ updateAuthState }) {
+export default function ReportPetScreen({ updateAuthState }) {
 
   const [petName, setPetName] = useState('');
   const [petSpecies, setPetSpecies] = useState('');
@@ -62,6 +62,7 @@ export default function AddPetScreen({ updateAuthState }) {
     setLastSeen('');
     setImage('');
   };
+  
   return (
     <>
       <ScrollView style={styles.container}>
@@ -77,7 +78,7 @@ export default function AddPetScreen({ updateAuthState }) {
                   : (
                     <View style={styles.dogImageContainer}>
                       <Image source={require('../../assets/corgi.png')} />
-                      <Text style={styles.roundImageText}>+ Pet Image Haha</Text>
+                      <Text style={styles.roundImageText}>+ Pet Image</Text>
                     </View>
                   )}
               </View>

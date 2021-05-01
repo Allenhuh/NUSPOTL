@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { SafeAreaView, StatusBar, Text } from 'react-native';
-import { StyleSheet, View, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import styles from '../styling/HomeScreen';
 import { API, autoShowTooltip, Storage, graphqlOperation } from 'aws-amplify';
 import { listPets } from '../../graphql/queries';
@@ -10,11 +10,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 export default class HomeScreen extends Component {
   state = { pets: [] }
+  navigation;
 
   async componentDidMount() {
     const petData = await API.graphql(graphqlOperation(listPets))
     const petList = petData.data.listPets.items;
     this.setState({ pets: petData.data.listPets.items })
+    this.navigation = this.props.navigation;
   }
 
   buildLostPetList(petList) {
@@ -22,23 +24,28 @@ export default class HomeScreen extends Component {
   }
 
   buildLostPet(pet) {
-    return (<View style={style.container} key={pet.id}>
-      <View style={style.petImageView}>
-        <Image
-        style={style.petImage}
-        source={require('../../assets/white_dog.jpeg')}
-      />
-      </View>
-      <View style={style.petInfoCtn}>
-        <View style={style.petInfo}>
-          <Text style={style.name}>{pet.petName}</Text>
-          <Text style={style.lastSeen}>Last seen {this.lastSeen(pet.createdAt)}</Text>
+    return (
+      <View style={style.container} key={pet.id}>
+        <View style={style.petImageView}>
+          <Image
+            style={style.petImage}
+            source={require('../../assets/white_dog.jpeg')}
+          />
         </View>
-        <View style={style.petInfo}>
-          <Text style={style.other}>{pet.petSpecies}{this.getGender(pet.petGender)} {pet.petBreed}</Text>
+        <View style={style.petInfoCtn}>
+          <View style={style.petInfo}>
+            <Text style={style.name}>{pet.petName}</Text>
+            <Text style={style.lastSeen}>Last seen {this.lastSeen(pet.createdAt)}</Text>
+          </View>
+          <View style={style.petInfo}>
+            <Text style={style.other}>{pet.petSpecies}{this.getGender(pet.petGender)} {pet.petBreed}</Text>
+          </View>
         </View>
-      </View>
-    </View>)
+      </View>)
+  }
+
+  reportLostPet() {
+    this.navigation.navigate('ReportLostPets');
   }
 
   getGender(gender) {
@@ -76,23 +83,25 @@ export default class HomeScreen extends Component {
   render() {
     const petList = this.buildLostPetList(this.state.pets)
     return (
-      <>
-        <ScrollView style={styles.container}>
-          <StatusBar barStyle="dark-content" />
-          <SafeAreaView>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Have you seen me?</Text>
-            </View>
-            <View style={[styles.inputContainer, style.list]}>
-              {petList}
-              {/* {this.state.pets.map((pet, i) =>
-                <Text style={styles.subtext} key={i}>{pet.petName} {pet.petSpecies} {pet.petGender}
-                </Text>
-              )} */}
-            </View>
-          </SafeAreaView>
+      <View style={styles.container}>
+        <ScrollView>
+          {/* <StatusBar barStyle="dark-content" /> */}
+          {/* <SafeAreaView> */}
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Have you seen me?</Text>
+          </View>
+          <View style={[styles.inputContainer, style.list]}>
+            {petList}
+          </View>
+          {/* </SafeAreaView> */}
         </ScrollView>
-      </>
+
+        <View style={style.floatButtonCtn}>
+          <TouchableOpacity style={style.floatButton} onPress={() => this.reportLostPet()}>
+            <Text>Report Lost Pets</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 }
@@ -105,6 +114,12 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  main: {
+    display: 'flex',
+    justifyContent: 'center',
+    flex: 1,
+    width: '100%',
   },
   container: {
     display: 'flex',
@@ -159,5 +174,19 @@ const style = StyleSheet.create({
     flexDirection: "row",
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  floatButtonCtn: {
+    position: 'absolute',
+    bottom: 10,
+    width: "100%",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  floatButton: {
+    borderRadius: 20,
+    backgroundColor: 'red',
+    padding: 12,
   }
 });

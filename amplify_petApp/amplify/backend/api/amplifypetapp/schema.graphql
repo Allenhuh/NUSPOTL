@@ -8,3 +8,13 @@ type Pet @model {
   lastSeen: String!
   image: String
 }
+
+type LostPet @model {
+  id: ID!
+  petId: ID!
+  lastSeenLocation: String!
+  lastSeenDate: Date!
+  description: String
+  reward: Decimal
+  foundStatus: Boolean!
+}

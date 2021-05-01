@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Auth } from 'aws-amplify';
+import ReportPetScreen from '../screens/report-pet-screen';
 
 const Tab = createBottomTabNavigator();
 const LostPetsStack = createStackNavigator();
@@ -21,46 +22,12 @@ const ProfileStack = createStackNavigator();
 
 const TabNavigation = (props) => {
 	return (
-		<Tab.Navigator>
-			<Tab.Screen name="Lost Pets"
-				options={{
-					tabBarLabel: 'Lost Pets',
-					tabBarIcon: ({ color, size }) => (
-						<MaterialCommunityIcons name="run-fast" color={color} size={size} />
-					),
-				}}>
-				{() => (
-					<LostPetsStack.Navigator>
-						<LostPetsStack.Screen name="Settings" component={HomeScreen} 
-						options={({ navigation }) => ({
-							headerTitleStyle: { color:'#3bb0d6', alignSelf: 'center'},
-							title: 'P  O  T  L',
-							headerStyle: {
-							  backgroundColor: '#F9F9F9',
-							},
-							headerLeft: () => (
-								<View style={styles.logOutBtn}>
-								  <Button
-									icon={<Icon name="sign-out" size={25} color="#656d77" />}
-									onPress={() => {
-									  Auth.signOut();
-									}}
-									type="clear"
-								  />
-								</View>
-							  ),
-							headerRight: () => (
-								<TouchableOpacity
-								  style={styles.addButton}
-								  onPress={() => navigation.navigate('My Pets')}>
-								  <Icon name={'plus'} size={20} color="#656d77" />
-								</TouchableOpacity>
-							  ),
-						  })} />
-					</LostPetsStack.Navigator>
-				)}
-			</Tab.Screen>
-			<Tab.Screen name="My Pets"
+		<Tab.Navigator options={{
+			initialRouteName: "LostPets"
+		}
+		}>
+
+			<Tab.Screen name="MyPets"
 				options={{
 					tabBarLabel: 'My Pets',
 					tabBarIcon: ({ color, size }) => (
@@ -69,12 +36,13 @@ const TabNavigation = (props) => {
 				}}>
 				{() => (
 					<MyPetStack.Navigator>
-						<MyPetStack.Screen name="My Pet" component={AddPetScreen} 
-						options={{title: 'MY PET', headerTitleStyle: {color:'#3bb0d6', alignSelf: 'center'}}}/>
+						<MyPetStack.Screen name="My Pet" component={AddPetScreen}
+							options={{ title: 'MY PET', headerTitleStyle: { color: '#3bb0d6', alignSelf: 'center' } }} />
 					</MyPetStack.Navigator>
 				)}
 			</Tab.Screen>
-			<Tab.Screen name="Settings"
+
+			{/* <Tab.Screen name="Settings"
 				options={{
 					tabBarLabel: 'Settings',
 					tabBarIcon: ({ color, size }) => (
@@ -86,7 +54,58 @@ const TabNavigation = (props) => {
 						<SettingsStack.Screen name="Settings" component={SettingScreen} />
 					</SettingsStack.Navigator>
 				)}
+			</Tab.Screen> */}
+
+			<Tab.Screen name="LostPets"
+				options={{
+					tabBarLabel: 'Lost Pets',
+					tabBarIcon: ({ color, size }) => (
+						<MaterialCommunityIcons name="run-fast" color={color} size={size} />
+					),
+				}}>
+				{() => (
+					<LostPetsStack.Navigator>
+						<LostPetsStack.Screen name="LostPets" component={HomeScreen}
+							options={({ navigation }) => ({
+								headerTitleStyle: { color: '#3bb0d6', alignSelf: 'center' },
+								title: 'P  O  T  L',
+								headerStyle: {
+									backgroundColor: '#F9F9F9',
+								},
+								headerLeft: () => (
+									<View style={styles.logOutBtn}>
+										<Button
+											icon={<Icon name="sign-out" size={25} color="#656d77" />}
+											onPress={() => {
+												Auth.signOut();
+											}}
+											type="clear"
+										/>
+									</View>
+								),
+								headerRight: () => (
+									<TouchableOpacity
+										style={styles.addButton}
+										onPress={() => navigation.navigate('My Pets')}>
+										<Icon name={'plus'} size={20} color="#656d77" />
+									</TouchableOpacity>
+								),
+							})} />
+						<LostPetsStack.Screen name="ReportLostPets" component={ReportPetScreen}
+							options={({ navigation }) => ({
+								headerTitleStyle: { color: '#3bb0d6', alignSelf: 'center' },
+								title: 'Report Lost Pet',
+								headerStyle: {
+									backgroundColor: '#F9F9F9',
+								},
+								headerRight: () => (
+									<View></View>
+								)
+							})} />
+					</LostPetsStack.Navigator>
+				)}
 			</Tab.Screen>
+
 			<Tab.Screen name="FAQ"
 				options={{
 					tabBarLabel: 'FAQ',
@@ -100,7 +119,8 @@ const TabNavigation = (props) => {
 					</FAQStack.Navigator>
 				)}
 			</Tab.Screen>
-			<Tab.Screen name="Profile"
+
+			{/* <Tab.Screen name="Profile"
 				options={{
 					tabBarLabel: 'Profile',
 					tabBarIcon: ({ color, size }) => (
@@ -112,7 +132,7 @@ const TabNavigation = (props) => {
 						<ProfileStack.Screen name="Profile" component={ProfileScreen} />
 					</ProfileStack.Navigator>
 				)}
-			</Tab.Screen>
+			</Tab.Screen> */}
 		</Tab.Navigator>
 	);
 
@@ -120,11 +140,11 @@ const TabNavigation = (props) => {
 
 const styles = StyleSheet.create({
 	addButton: {
-	  marginRight: 20,
+		marginRight: 20,
 	},
 	logOutBtn: {
-	  marginLeft: 10,
+		marginLeft: 10,
 	},
-  });
-  
+});
+
 export default TabNavigation;
