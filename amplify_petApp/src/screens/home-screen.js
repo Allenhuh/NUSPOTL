@@ -7,16 +7,25 @@ import { listPets } from '../../graphql/queries';
 import { ScrollView } from 'react-native';
 import moment from 'moment';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { RefreshControl } from 'react-native';
 
 export default class HomeScreen extends Component {
-  state = { pets: [] }
+  state = { pets: [], refreshing: false }
   navigation;
 
-  async componentDidMount() {
-    const petData = await API.graphql(graphqlOperation(listPets))
-    const petList = petData.data.listPets.items;
-    this.setState({ pets: petData.data.listPets.items })
+  constructor(props) {
+    super(props);
     this.navigation = this.props.navigation;
+    this.loadPets();
+  }
+
+  async componentDidMount() {
+    // const petList = petData.data.listPets.items;
+  }
+
+  async loadPets() {
+    const petData = await API.graphql(graphqlOperation(listPets));
+    this.setState({ pets: petData.data.listPets.items });
   }
 
   buildLostPetList(petList) {
@@ -24,12 +33,14 @@ export default class HomeScreen extends Component {
   }
 
   buildLostPet(pet) {
+    console.log(pet, 'pet');
     return (
       <View style={style.container} key={pet.id}>
         <View style={style.petImageView}>
           <Image
             style={style.petImage}
             source={require('../../assets/white_dog.jpeg')}
+            // source={{ uri: pet.image }}
           />
         </View>
         <View style={style.petInfoCtn}>
@@ -81,12 +92,13 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    const petList = this.buildLostPetList(this.state.pets)
+    const petList = this.buildLostPetList(this.state.pets);
+    const { refreshing } = this.state;
     return (
       <View style={styles.container}>
-        <ScrollView>
-          {/* <StatusBar barStyle="dark-content" /> */}
-          {/* <SafeAreaView> */}
+        <ScrollView refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={() => this.loadPets()} />
+        }>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Have you seen me?</Text>
           </View>

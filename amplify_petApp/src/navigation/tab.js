@@ -22,10 +22,7 @@ const ProfileStack = createStackNavigator();
 
 const TabNavigation = (props) => {
 	return (
-		<Tab.Navigator options={{
-			initialRouteName: "LostPets"
-		}
-		}>
+		<Tab.Navigator initialRouteName="LostPets">
 
 			<Tab.Screen name="MyPets"
 				options={{
