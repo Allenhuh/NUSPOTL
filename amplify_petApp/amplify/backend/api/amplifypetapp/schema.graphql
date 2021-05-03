@@ -5,6 +5,19 @@ type Pet @model {
   petBreed: String!
   petGender: String!
   petDesc: String
-  lastSeen: String!
+  lastSeen: String
   image: String
+  certificateNo: String
+  isCertified: Boolean
+  lostPet: [LostPet] @connection(name: "PetAndLostPet")
+}
+
+type LostPet @model {
+  id: ID!
+  lastSeenLocation: String!
+  lastSeenDate: String!
+  description: String
+  reward: Float
+  foundStatus: Boolean!
+  pet: Pet @connection(name: "PetAndLostPet")
 }
