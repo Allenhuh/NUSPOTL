@@ -12,6 +12,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Auth } from 'aws-amplify';
 import ReportPetScreen from '../screens/report-pet-screen';
+import SearchScreen from '../screens/search-screen';
 
 const Tab = createBottomTabNavigator();
 const LostPetsStack = createStackNavigator();
@@ -83,12 +84,23 @@ const TabNavigation = (props) => {
 								headerRight: () => (
 									<TouchableOpacity
 										style={styles.addButton}
-										onPress={() => navigation.navigate('My Pets')}>
+										onPress={() => navigation.navigate('SearchPets')}>
 										<Icon name={'plus'} size={20} color="#656d77" />
 									</TouchableOpacity>
 								),
 							})} />
 						<LostPetsStack.Screen name="ReportLostPets" component={ReportPetScreen}
+							options={({ navigation }) => ({
+								headerTitleStyle: { color: '#3bb0d6', alignSelf: 'center' },
+								title: 'Report Lost Pet',
+								headerStyle: {
+									backgroundColor: '#F9F9F9',
+								},
+								headerRight: () => (
+									<View></View>
+								)
+							})} />
+						<LostPetsStack.Screen name="SearchPets" component={SearchScreen}
 							options={({ navigation }) => ({
 								headerTitleStyle: { color: '#3bb0d6', alignSelf: 'center' },
 								title: 'Report Lost Pet',
