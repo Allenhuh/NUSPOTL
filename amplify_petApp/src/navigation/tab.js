@@ -85,7 +85,8 @@ const TabNavigation = (props) => {
 									<TouchableOpacity
 										style={styles.addButton}
 										onPress={() => navigation.navigate('SearchPets')}>
-										<Icon name={'plus'} size={20} color="#656d77" />
+										{/* <Icon name={'plus'} size={20} color="#656d77" /> */}
+										<MaterialCommunityIcons name={'magnify'} size={20} color="#656d77" />
 									</TouchableOpacity>
 								),
 							})} />
@@ -103,7 +104,7 @@ const TabNavigation = (props) => {
 						<LostPetsStack.Screen name="SearchPets" component={SearchScreen}
 							options={({ navigation }) => ({
 								headerTitleStyle: { color: '#3bb0d6', alignSelf: 'center' },
-								title: 'Report Lost Pet',
+								title: 'Search Lost Pets',
 								headerStyle: {
 									backgroundColor: '#F9F9F9',
 								},
