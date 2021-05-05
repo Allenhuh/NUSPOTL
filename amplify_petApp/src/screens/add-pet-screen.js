@@ -77,7 +77,7 @@ export default function AddPetScreen({ updateAuthState }) {
                   : (
                     <View style={styles.dogImageContainer}>
                       <Image source={require('../../assets/corgi.png')} />
-                      <Text style={styles.roundImageText}>+ Pet Image Haha</Text>
+                      <Text style={styles.roundImageText}>+ Pet Image</Text>
                     </View>
                   )}
               </View>

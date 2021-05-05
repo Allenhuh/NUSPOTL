@@ -26,8 +26,45 @@ const ProfileStack = createStackNavigator();
 const TabNavigation = (props) => {
 	return (
 		<Tab.Navigator initialRouteName="LostPets">
-
-			<Tab.Screen name="MyPets"
+			{/* <Tab.Screen name="Lost Pets"
+				options={{
+					tabBarLabel: 'Lost Pets',
+					tabBarIcon: ({ color, size }) => (
+						<MaterialCommunityIcons name="run-fast" color={color} size={size} />
+					),
+				}}>
+				{() => (
+					<LostPetsStack.Navigator>
+						<LostPetsStack.Screen name="Settings" component={HomeScreen} 
+						options={({ navigation }) => ({
+							headerTitleStyle: { color:'#3bb0d6', alignSelf: 'center'},
+							title: 'P  O  T  L',
+							headerStyle: {
+							  backgroundColor: '#F9F9F9',
+							},
+							headerRight: () => (
+								<View style={styles.logOutBtn}>
+								  <Button
+									icon={<Icon name="sign-out" size={25} color="#656d77" />}
+									onPress={() => {
+									  Auth.signOut();
+									}}
+									type="clear"
+								  />
+								</View>
+							  ),
+							headerLeft: () => (
+								<TouchableOpacity
+								  style={styles.addButton}
+								  onPress={() => navigation.navigate('My Pets')}>
+								  <Icon name={'plus'} size={20} color="#656d77" />
+								</TouchableOpacity>
+							  ),
+						  })} />
+					</LostPetsStack.Navigator>
+				)}
+			</Tab.Screen> */}
+			<Tab.Screen name="My Pets"
 				options={{
 					tabBarLabel: 'My Pets',
 					tabBarIcon: ({ color, size }) => (

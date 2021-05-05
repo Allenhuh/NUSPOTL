@@ -7,15 +7,16 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         fontWeight:'bold',
         marginTop: 20,
-        color:'#121431'
+        color:'#EFEADD',
     },
     titleContainer:{
         justifyContent:'center',
         alignItems:'center',
     },
     container: {
-        flex: 1,
-        backgroundColor: '#F9F9F9',
+        flex: 0.5,
+        backgroundColor: '#EFEADD',
+        margin: 20,
       }
 })
 
