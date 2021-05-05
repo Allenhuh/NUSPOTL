@@ -110,7 +110,7 @@ export default class HomeScreen extends Component {
 
         <View style={style.floatButtonCtn}>
           <TouchableOpacity style={style.floatButton} onPress={() => this.reportLostPet()}>
-            <Text>Report Lost Pets</Text>
+            <Text style={{color: '#f9f9f9', fontWeight: 'bold', fontFamily: 'monospace'}}>Report Lost Pet</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -198,7 +198,8 @@ const style = StyleSheet.create({
   },
   floatButton: {
     borderRadius: 20,
-    backgroundColor: 'red',
-    padding: 12,
+    backgroundColor: '#00ADB5',
+    padding: 15,
+    color: '#f9f9f9',
   }
 });
