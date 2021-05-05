@@ -37,11 +37,19 @@ export default class SearchScreen extends Component {
         { name: 'Gray', id: 105, type: 'color' },
         { name: 'Blue', id: 106, type: 'color' },
         { name: 'Red', id: 107, type: 'color' },
-        { name: 'Green', id: 108, type: 'color' },
-        { name: 'Gold', id: 109, type: 'color' },
-        { name: 'Pink', id: 110, type: 'color' },
+        // { name: 'Green', id: 108, type: 'color' },
+        // { name: 'Gold', id: 109, type: 'color' },
+        // { name: 'Pink', id: 110, type: 'color' },
         { name: 'Purple', id: 111, type: 'color' },
         { name: 'Orange', id: 112, type: 'color' },
+    ];
+
+    size = [
+        { name: 'Extra small', id: 301, type: 'size' },
+        { name: 'Small', id: 302, type: 'size' },
+        { name: 'Medium', id: 303, type: 'size' },
+        { name: 'Large', id: 304, type: 'size' },
+        { name: 'Extra large', id: 305, type: 'size' },
     ];
 
     selectOne(id, type) {
@@ -71,11 +79,10 @@ export default class SearchScreen extends Component {
         const exist = this.state.tags.find(e => {
             return e.id === id;
         });
-        console.log(exist, 'exist');
-        if(exist) {
+        if (exist) {
             const list = this.state.tags;
             const index = list.indexOf(exist);
-            
+
             list.splice(index, 1);
             this.setState({ tags: list });
         } else {
@@ -97,10 +104,9 @@ export default class SearchScreen extends Component {
             return e.id === option.id;
         });
         const isSelected = exist !== null && exist !== undefined;
-        console.log(isSelected, 'isSelected');
         let buttonCss = [style.optionButton];
         let buttonTextCss = [style.optionBtnText];
-        if(isSelected) {
+        if (isSelected) {
             buttonCss.push(style.optionButtonSelected);
             buttonTextCss.push(style.optionButtonTextSelected);
         }
@@ -116,10 +122,9 @@ export default class SearchScreen extends Component {
             return e.id === option.id;
         });
         const isSelected = exist !== null && exist !== undefined;
-        console.log(isSelected, 'isSelected');
         let buttonCss = [style.optionButton];
         let buttonTextCss = [style.optionBtnText];
-        if(isSelected) {
+        if (isSelected) {
             buttonCss.push(style.optionButtonSelected);
             buttonTextCss.push(style.optionButtonTextSelected);
         }
@@ -145,17 +150,28 @@ export default class SearchScreen extends Component {
     }
 
     searchTag(modal) {
-        this.setState({ modal });
+        if(modal && this.state.tags.length > 0) {
+            this.setState({ modal });
+        } else if (!modal) {
+            this.setState({ modal });
+        } else {
+            alert('Please select at least 1 tag to begin search');
+        }
     }
 
     search() {
-
+        const searchTags = this.state.tags.map(e => {
+            return e.name;
+        });
+        this.setState({ modal: false });
+        this.navigation.navigate('SearchResult', { searchTags });
     }
 
     render() {
         const { modal } = this.state;
         const speciesList = this.buildOptionList(this.species, true);
         const colorList = this.buildOptionList(this.color, false);
+        const sizeList = this.buildOptionList(this.size, true);
         const selected = modal ? this.preBuildSelectedOptions() : null;
         return (
             <View style={style.container}>
@@ -170,18 +186,26 @@ export default class SearchScreen extends Component {
                     </View>
 
                     <View style={style.searchContainer}>
+                        <Text style={style.optionTitle}>Size</Text>
+                        <View style={style.optionContainer}>
+                            {sizeList}
+                        </View>
+                    </View>
+
+                    <View style={style.searchContainer}>
                         <Text style={style.optionTitle}>Colors</Text>
                         <View style={style.optionContainer}>
                             {colorList}
                         </View>
                     </View>
+
+                    <View style={style.floatButtonCtn}>
+                        <TouchableOpacity style={style.floatButton} onPress={() => this.searchTag(true)}>
+                            <Text style={style.floatButtonText}>Confirm Search</Text>
+                        </TouchableOpacity>
+                    </View>
                 </ScrollView>
 
-                <View style={style.floatButtonCtn}>
-                    <TouchableOpacity style={style.floatButton} onPress={() => this.searchTag(true)}>
-                        <Text style={style.floatButtonText}>Confirm Search</Text>
-                    </TouchableOpacity>
-                </View>
                 {modal &&
                     <View style={style.modalCtn}>
                         <View style={style.modal}>
@@ -237,8 +261,6 @@ const style = StyleSheet.create({
         alignItems: 'flex-start',
     },
     floatButtonCtn: {
-        position: 'relative',
-        bottom: 10,
         width: "100%",
         display: 'flex',
         justifyContent: 'center',
@@ -305,15 +327,17 @@ const style = StyleSheet.create({
     },
     modalTitle: {
         fontSize: 18,
-        color: '#000'
+        color: '#000',
+        alignSelf: 'center',
     },
     selectedTagsCtn: {
         // flex: 1,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'flex-start',
         marginVertical: 10,
+        flexWrap: 'wrap'
     },
     tagCtn: {
         display: 'flex',
@@ -323,6 +347,7 @@ const style = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: 'orange',
         padding: 5,
+        paddingHorizontal: 8
     },
     tagText: {
         fontSize: 12,

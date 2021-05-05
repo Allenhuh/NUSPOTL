@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Auth } from 'aws-amplify';
 import ReportPetScreen from '../screens/report-pet-screen';
 import SearchScreen from '../screens/search-screen';
+import AddMyPetScreen from '../screens/add-my-pet-screen';
+import SearchResultScreen from '../screens/search-result-screen';
 
 const Tab = createBottomTabNavigator();
 const LostPetsStack = createStackNavigator();
@@ -97,11 +99,24 @@ const TabNavigation = (props) => {
 								headerStyle: {
 									backgroundColor: '#F9F9F9',
 								},
+
 								headerRight: () => (
 									<View></View>
 								)
 							})} />
 						<LostPetsStack.Screen name="SearchPets" component={SearchScreen}
+							options={({ navigation }) => ({
+								headerTitleStyle: { color: '#3bb0d6', alignSelf: 'center' },
+								title: 'Search Lost Pets',
+								headerStyle: {
+									backgroundColor: '#F9F9F9',
+								},
+								headerRight: () => (
+									<View></View>
+								)
+							})} />
+
+						<LostPetsStack.Screen name="SearchResult" component={SearchResultScreen}
 							options={({ navigation }) => ({
 								headerTitleStyle: { color: '#3bb0d6', alignSelf: 'center' },
 								title: 'Search Lost Pets',
